@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><title>Your Journal</title></head>
+<body>
+  <h1>Your Past Entries</h1>
+  <a href="{{ url_for('home') }}">✍️ New Entry</a>
+  <ul>
+  {% for e in entries %}
+    <li>
+      <strong>{{ e.created_at.strftime('%b %d %Y %H:%M') }}</strong><br>
+      {{ e.content }}
+      {% if e.insight %}
+        <div class="insight">
+          {{ e.insight|safe }}
+        </div>
+      {% endif %}
+    </li>
+  {% else %}
+    <li>No entries yet.</li>
+  {% endfor %}
+</ul>
+
+<style>
+  
+  .insight{
+    display:block;
+    max-width:700px;         
+    white-space:pre-line;    
+  }
+</style>
+
+</body>
+</html>
