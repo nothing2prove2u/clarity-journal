@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: clarity-journal
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: OPENAI_API_KEY   # you’ll add the value in the dashboard
+        sync: false           # prevents Render copying it back into Git
